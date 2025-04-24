@@ -22,7 +22,7 @@ logger = logging.getLogger(__name__)
               help='Path to save the extracted text to. If not provided, the text will be saved to the same location as the PDF with a .txt extension.')
 @click.option('-e', '--engine', type=click.Choice(['tesseract', 'easyocr'], case_sensitive=False),
               default='tesseract', help='OCR engine to use.')
-@click.option('-l', '--lang', default='tha', help='Language code(s) for OCR (e.g., "tha" for Thai, "tha+eng" for Thai and English).')
+@click.option('-l', '--lang', default='tha+eng', help='Language code(s) for OCR (e.g., "tha" for Thai, "tha+eng" for Thai and English, "eng" for English only).')
 @click.option('-d', '--dpi', type=int, default=300, help='DPI setting for PDF to image conversion.')
 @click.option('-t', '--tesseract-cmd', help='Path to Tesseract executable (if not in PATH).')
 @click.option('--tessdata-dir', help='Path to directory containing Tesseract language data files.')
@@ -32,7 +32,7 @@ def main(
     pdf_path: str,
     output_path: Optional[str] = None,
     engine: str = 'tesseract',
-    lang: str = 'tha',
+    lang: str = 'tha+eng',
     dpi: int = 300,
     tesseract_cmd: Optional[str] = None,
     tessdata_dir: Optional[str] = None,

@@ -5,7 +5,7 @@
 ## คุณสมบัติ
 
 - แปลงไฟล์ PDF ที่มีรูปภาพ (เช่น เอกสารที่สแกน) เป็นข้อความ
-- รองรับการทำ OCR สำหรับภาษาไทย
+- รองรับการทำ OCR สำหรับภาษาไทยและภาษาอังกฤษในเอกสารเดียวกัน (ค่าเริ่มต้น)
 - มีตัวเลือก OCR หลากหลาย (Tesseract, EasyOCR)
 - ปรับค่า DPI ได้ตามต้องการเพื่อเพิ่มความแม่นยำในการทำ OCR
 - บันทึกข้อความไปยังไฟล์พร้อมระบุตำแหน่งเลขหน้า
@@ -88,9 +88,10 @@ python -m pdf_ocr your_file.pdf --engine easyocr
 # ตั้งค่า DPI เพื่อคุณภาพที่ดีขึ้น
 python -m pdf_ocr your_file.pdf --dpi 300
 
-# ระบุภาษา
-python -m pdf_ocr your_file.pdf --lang tha
-python -m pdf_ocr your_file.pdf --lang tha+eng
+# ระบุภาษา (ค่าเริ่มต้นคือ tha+eng คือรองรับทั้งภาษาไทยและอังกฤษ)
+python -m pdf_ocr your_file.pdf                # ใช้ค่าเริ่มต้น tha+eng
+python -m pdf_ocr your_file.pdf --lang tha     # เฉพาะภาษาไทย
+python -m pdf_ocr your_file.pdf --lang eng     # เฉพาะภาษาอังกฤษ
 
 # ระบุตำแหน่งของ tessdata โดยตรง (กรณีมีปัญหากับการค้นหาไฟล์ภาษา)
 python -m pdf_ocr your_file.pdf --tessdata-dir /path/to/tessdata
@@ -98,11 +99,17 @@ python -m pdf_ocr your_file.pdf --tessdata-dir /path/to/tessdata
 
 ## การแก้ปัญหาที่พบบ่อย
 
-### ไม่พบไฟล์ข้อมูลภาษาไทย
+### ไม่พบไฟล์ข้อมูลภาษา
 
 หากเจอข้อผิดพลาด:
 ```
 Error opening data file /path/to/tessdata/tha.traineddata
+```
+
+หรือ
+
+```
+Error opening data file /path/to/tessdata/eng.traineddata
 ```
 
 วิธีแก้:

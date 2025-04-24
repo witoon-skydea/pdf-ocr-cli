@@ -20,7 +20,7 @@ logger = logging.getLogger(__name__)
 class OCRBase:
     """Base class for OCR engines."""
     
-    def __init__(self, lang: str = 'tha', dpi: int = 300):
+    def __init__(self, lang: str = 'tha+eng', dpi: int = 300):
         """
         Initialize OCR engine.
         
@@ -61,7 +61,7 @@ class OCRBase:
 class TesseractOCR(OCRBase):
     """OCR engine using Tesseract."""
     
-    def __init__(self, lang: str = 'tha', dpi: int = 300, tesseract_cmd: Optional[str] = None, tessdata_dir: Optional[str] = None):
+    def __init__(self, lang: str = 'tha+eng', dpi: int = 300, tesseract_cmd: Optional[str] = None, tessdata_dir: Optional[str] = None):
         """
         Initialize Tesseract OCR engine.
         
@@ -139,7 +139,7 @@ class TesseractOCR(OCRBase):
 class EasyOCR(OCRBase):
     """OCR engine using EasyOCR."""
     
-    def __init__(self, lang: str = 'tha', dpi: int = 300, use_gpu: bool = True):
+    def __init__(self, lang: str = 'tha+eng', dpi: int = 300, use_gpu: bool = True):
         """
         Initialize EasyOCR engine.
         
@@ -209,7 +209,7 @@ class EasyOCR(OCRBase):
             return ""
 
 
-def get_ocr_engine(engine: str, lang: str = 'tha', dpi: int = 300, **kwargs) -> OCRBase:
+def get_ocr_engine(engine: str, lang: str = 'tha+eng', dpi: int = 300, **kwargs) -> OCRBase:
     """
     Factory function to get an OCR engine instance.
     
@@ -251,7 +251,7 @@ def convert_pdf_to_text(
     pdf_path: Union[str, Path],
     output_path: Optional[Union[str, Path]] = None,
     engine: str = 'tesseract',
-    lang: str = 'tha',
+    lang: str = 'tha+eng',
     dpi: int = 300,
     **kwargs
 ) -> str:
